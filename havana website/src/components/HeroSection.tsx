@@ -1,7 +1,24 @@
 
 import { Button } from '@/components/ui/button';
+import { MessageCircle } from 'lucide-react';
 
 const HeroSection = () => {
+  const handleWhatsAppContact = () => {
+    const message = "Hi! I'm interested in the Havana Elite watch ($2,499). Can you tell me more?";
+    const whatsappUrl = `https://wa.me/21612345678?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleMessengerContact = () => {
+    const messengerUrl = `https://m.me/havana.tn`;
+    window.open(messengerUrl, '_blank');
+  };
+
+  const scrollToProduct = () => {
+    const element = document.getElementById('collection');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -20,14 +37,37 @@ const HeroSection = () => {
           Time, Refined.
         </h1>
         <p className="text-xl md:text-2xl text-luxury-platinum mb-8 max-w-2xl mx-auto font-light">
-          Explore our modern collection of precision-crafted timepieces
+          The Havana Elite - our signature precision-crafted timepiece
         </p>
-        <Button 
-          size="lg" 
-          className="bg-luxury-silver text-luxury-black hover:bg-luxury-platinum transition-all duration-300 text-lg px-8 py-4 hover-lift"
-        >
-          Shop the Collection
-        </Button>
+        
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Button 
+            onClick={scrollToProduct}
+            size="lg" 
+            className="bg-luxury-silver text-luxury-black hover:bg-luxury-platinum transition-all duration-300 text-lg px-8 py-4 hover-lift"
+          >
+            View the Watch
+          </Button>
+          
+          <div className="flex gap-3">
+            <Button 
+              onClick={handleWhatsAppContact}
+              size="lg"
+              className="bg-green-600 hover:bg-green-700 text-white transition-all duration-300 flex items-center gap-2 px-6 py-4"
+            >
+              <MessageCircle size={20} />
+              WhatsApp
+            </Button>
+            <Button 
+              onClick={handleMessengerContact}
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 flex items-center gap-2 px-6 py-4"
+            >
+              <MessageCircle size={20} />
+              Messenger
+            </Button>
+          </div>
+        </div>
       </div>
 
       {/* Scroll Indicator */}

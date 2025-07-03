@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { MessageCircle, Phone } from 'lucide-react';
 
 interface ProductCardProps {
   name: string;
@@ -11,6 +12,17 @@ interface ProductCardProps {
 
 const ProductCard = ({ name, price, image, features = [] }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleWhatsAppPurchase = () => {
+    const message = `Hi! I want to purchase the ${name} watch (${price}). Can you help me with the order?`;
+    const whatsappUrl = `https://wa.me/21612345678?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleMessengerPurchase = () => {
+    const messengerUrl = `https://m.me/havana.tn`;
+    window.open(messengerUrl, '_blank');
+  };
 
   return (
     <div 
@@ -30,29 +42,41 @@ const ProductCard = ({ name, price, image, features = [] }: ProductCardProps) =>
       </div>
       
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-luxury-platinum mb-2">{name}</h3>
-        <p className="text-2xl font-bold text-gradient mb-4">{price}</p>
+        <h3 className="text-2xl font-semibold text-luxury-platinum mb-2">{name}</h3>
+        <p className="text-3xl font-bold text-gradient mb-4">{price}</p>
         
         {features.length > 0 && (
-          <ul className="text-sm text-luxury-silver mb-4 space-y-1">
+          <ul className="text-sm text-luxury-silver mb-6 space-y-2">
             {features.map((feature, index) => (
-              <li key={index}>• {feature}</li>
+              <li key={index} className="flex items-center">
+                <span className="w-2 h-2 bg-luxury-silver rounded-full mr-3"></span>
+                {feature}
+              </li>
             ))}
           </ul>
         )}
         
-        <div className="flex space-x-3">
-          <Button 
-            variant="outline" 
-            className="flex-1 border-luxury-silver text-luxury-silver hover:bg-luxury-silver hover:text-luxury-black transition-all duration-300"
-          >
-            Quick View
-          </Button>
-          <Button 
-            className="flex-1 bg-luxury-silver text-luxury-black hover:bg-luxury-platinum transition-all duration-300"
-          >
-            Add to Cart
-          </Button>
+        <div className="space-y-4">
+          <div className="text-center mb-4">
+            <p className="text-luxury-silver text-sm mb-2">Order directly via:</p>
+          </div>
+          
+          <div className="flex space-x-3">
+            <Button 
+              onClick={handleWhatsAppPurchase}
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white transition-all duration-300 flex items-center gap-2 py-3"
+            >
+              <MessageCircle size={18} />
+              Buy on WhatsApp
+            </Button>
+            <Button 
+              onClick={handleMessengerPurchase}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 flex items-center gap-2 py-3"
+            >
+              <MessageCircle size={18} />
+              Buy on Messenger
+            </Button>
+          </div>
         </div>
       </div>
     </div>
