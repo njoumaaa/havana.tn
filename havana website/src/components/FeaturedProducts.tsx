@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 const FeaturedProducts = () => {
   const product = {
     name: "Havana Elite",
-    price: "$2,499",
+    price: "TND 89",
     image: "/lovable-uploads/1c7ad91d-a1d0-4582-9b20-bd27c6237e2f.png",
     features: ["Swiss Movement", "Sapphire Crystal", "200m Water Resistant", "Titanium Case", "Limited Edition"]
   };
